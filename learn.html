@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>    coroutine, gevent, greelet, asyncio, epoll
+</title>
+    <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/main.css">
+
+    <script src="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/js/jquery.min.js"></script>
+    <script src="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/js/bootstrap.min.js"></script>
+    <script src="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/js/less.min.js"></script>
+</head>
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="http://kaizengliu.github.io/pelican_bootswatch_theme" class="navbar-brand">首页</a>
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="notes">文章 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="notes">
+                            <li>
+                                <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/js.html">
+                                    javascript挑战题
+                                    <span class="text-muted">2015/07/26</span>
+                                </a>
+                            </li>
+
+                                <li class="divider"></li>
+                            <li>
+                                <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/learn.html">
+                                    coroutine, gevent, greelet, asyncio, epoll
+                                    <span class="text-muted">2015/05/20</span>
+                                </a>
+                            </li>
+
+                                <li class="divider"></li>
+                            <li>
+                                <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/page_out.html">
+                                    GFW学习
+                                    <span class="text-muted">2015/05/20</span>
+                                </a>
+                            </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/pages/about_me.html">关于我</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://github.com/kaizengliu/" target="_blank"><i class="fa fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-xs-6">
+                <h1>
+    coroutine, gevent, greelet, asyncio, epoll
+                </h1>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-xs-6 text-right">
+    <h3><small> 2015/05/20 </small></h3>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+    <h1>coroutine, gevent, greelet, asyncio, epoll</h1>
+<p>coroutine实现非阻塞原理：在运行耗时的函数时，在每一步用yield跳出，然后别的coroutine执行再跳回耗时的函数。</p>
+<p>gevent使用了greelet，例子</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">gevent</span> <span class="kn">import</span> <span class="n">monkey</span><span class="p">;</span> <span class="n">monkey</span><span class="o">.</span><span class="n">patch_all</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">gevent</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;GET: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%d</span><span class="s"> bytes received from </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">url</span><span class="p">))</span>
+
+<span class="n">gevent</span><span class="o">.</span><span class="n">joinall</span><span class="p">([</span>
+        <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;https://www.python.org/&#39;</span><span class="p">),</span>
+        <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;https://www.yahoo.com/&#39;</span><span class="p">),</span>
+        <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;https://github.com/&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+
+
+<p>运行结果：</p>
+<div class="highlight"><pre><span class="n">GET</span><span class="o">:</span> <span class="n">https</span><span class="o">://</span><span class="n">www</span><span class="o">.</span><span class="na">python</span><span class="o">.</span><span class="na">org</span><span class="o">/</span>
+<span class="n">GET</span><span class="o">:</span> <span class="n">https</span><span class="o">://</span><span class="n">www</span><span class="o">.</span><span class="na">yahoo</span><span class="o">.</span><span class="na">com</span><span class="o">/</span>
+<span class="n">GET</span><span class="o">:</span> <span class="n">https</span><span class="o">://</span><span class="n">github</span><span class="o">.</span><span class="na">com</span><span class="o">/</span>
+<span class="mi">47103</span> <span class="n">bytes</span> <span class="n">received</span> <span class="n">from</span> <span class="n">https</span><span class="o">://</span><span class="n">www</span><span class="o">.</span><span class="na">python</span><span class="o">.</span><span class="na">org</span><span class="o">/.</span>
+<span class="mi">279031</span> <span class="n">bytes</span> <span class="n">received</span> <span class="n">from</span> <span class="n">https</span><span class="o">://</span><span class="n">www</span><span class="o">.</span><span class="na">yahoo</span><span class="o">.</span><span class="na">com</span><span class="o">/.</span>
+<span class="mi">17763</span> <span class="n">bytes</span> <span class="n">received</span> <span class="n">from</span> <span class="n">https</span><span class="o">://</span><span class="n">github</span><span class="o">.</span><span class="na">com</span><span class="o">/.</span>
+</pre></div>
+
+
+<p>不知道怎么实现无阻塞执行、自动调度的。</p>
+<p>asyncio只能在python3中用</p>
+<p>epoll：
+1. 注册一堆文件描述符和期望描述符发生的事件，暂且称这“一堆”为evenets
+2. 程序在无限循环中调用epoll.wait等待事件的发生
+3. epoll  将发生事件的文件描述符放入 happend_events中
+4. 程序处理happend_events中的文件描述符</p>
+<p><a href="http://blog.csdn.net/lmh12506/article/details/7776086">详情参考</a></p>
+    </div>
+</div>
+<a href="javascript:void(0);" class="go-top">Go Top</a>
+
+<script type="text/javascript">
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        });
+    </script>
+</body>
+</html>

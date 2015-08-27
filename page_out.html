@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>    pages 1
+    <title>    GFW学习
 </title>
     <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/font-awesome.min.css" />
@@ -41,8 +41,16 @@
 
                                 <li class="divider"></li>
                             <li>
+                                <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/learn.html">
+                                    coroutine, gevent, greelet, asyncio, epoll
+                                    <span class="text-muted">2015/05/20</span>
+                                </a>
+                            </li>
+
+                                <li class="divider"></li>
+                            <li>
                                 <a href="http://kaizengliu.github.io/pelican_bootswatch_theme/page_out.html">
-                                    pages 1
+                                    GFW学习
                                     <span class="text-muted">2015/05/20</span>
                                 </a>
                             </li>
@@ -67,7 +75,7 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-xs-6">
                 <h1>
-    pages 1
+    GFW学习
                 </h1>
             </div>
 
@@ -77,50 +85,34 @@
         </div>
     </div>
     <div class="main-content">
-    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-<p>xxxxxxxxxxxxxxxxxxxxx</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">copytree</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ignore</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">ignored_names</span> <span class="o">=</span> <span class="n">ignore</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">ignored_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dst</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
-
-    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ignored_names</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">srcname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="n">dstname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">symlinks</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">islink</span><span class="p">(</span><span class="n">srcname</span><span class="p">):</span>
-                <span class="n">linkto</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">readlink</span><span class="p">(</span><span class="n">srcname</span><span class="p">)</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="n">linkto</span><span class="p">,</span> <span class="n">dstname</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">srcname</span><span class="p">):</span>
-                <span class="n">copytree</span><span class="p">(</span><span class="n">srcname</span><span class="p">,</span> <span class="n">dstname</span><span class="p">,</span> <span class="n">symlinks</span><span class="p">,</span> <span class="n">ignore</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">copy2</span><span class="p">(</span><span class="n">srcname</span><span class="p">,</span> <span class="n">dstname</span><span class="p">)</span>
-            <span class="c"># XXX What about devices, sockets etc.?</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">IOError</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">error</span><span class="p">)</span> <span class="k">as</span> <span class="n">why</span><span class="p">:</span>
-            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">srcname</span><span class="p">,</span> <span class="n">dstname</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">why</span><span class="p">)))</span>
-        <span class="c"># catch the Error from the recursive copytree so that we can</span>
-        <span class="c"># continue with other files</span>
-        <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">copystat</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">WindowsError</span><span class="p">:</span>
-        <span class="c"># can&#39;t copy file access times on Windows</span>
-        <span class="k">pass</span>
-    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">why</span><span class="p">:</span>
-        <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">why</span><span class="p">)))</span>
-    <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+    <h1>GFW</h1>
+<p>[TOC]</p>
+<h2>域名服务器缓存污染(DNS cache pollution)</h2>
+<p>又称域名服务器缓存投毒(DNS cache poisoning),</p>
+<h3>DNS</h3>
+<h3>List of DNS record types</h3>
+<h4>A</h4>
+<p>Returns a 32-bit IPv4 address, most commonly used to map hostnames to an IP address of the host</p>
+<h4>AAAA</h4>
+<p>Returns a 128-bit IPv6 address, most commonly used to map hostnames to an IP address of the host.</p>
+<h4>CNAME (Canonical Name)</h4>
+<p>It specify that a domain name is an alias for another domain,  the "canonical" domain. All information, including subdomains, IP addresses, etc., are defined by the canonical domain.</p>
+<p>This can prove convenient when running multiple services (like an FTP server and a webserver; each running on different ports) from a single IP address. One can, for example, point ftp.example.com and www.example.com to the DNS A record for example.com, which in turn points to the IP-address. Then, if the IP-address ever changes, one only has to record the change in one place within the network: in the DNS A record.</p>
+<p>CNAME records must always point to another domain name, never directly to an IP-address.</p>
+<div class="highlight"><pre>NAME                    TYPE   VALUE
+--------------------------------------------------
+bar.example.com.        CNAME  foo.example.com.
+foo.example.com.        A      192.0.2.23
 </pre></div>
+
+
+<p>when an A record lookup for bar.example.com is done, theThe left-hand label is an alias for the right-hand side (the RDATA portion), which is (or should be) a canonical name.[1] In other words, a CNAME record like this:resolver will see a CNAME record and restart the checking at foo.example.com and will then return 192.0.2.23.</p>
+<div class="highlight"><pre>bar.example.com.        CNAME  foo.example.com.
+</pre></div>
+
+
+<p>may be read as:
+bar.example.com is an alias for the canonical name (CNAME) foo.example.com. A client will request bar.example.com and the answer will be foo.example.com.</p>
     </div>
 </div>
 <a href="javascript:void(0);" class="go-top">Go Top</a>
