@@ -1,0 +1,31 @@
+.article-list {
+    padding: 0;
+    list-style: none;
+}
+
+.article-item {
+    margin-bottom: 20px;
+}
+
+.article-item:last-child {
+    margin-bottom: 0;
+}
+
+.go-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-indent: -999em;
+    background: url(../images/scrollup.png) no-repeat center;
+}
+
+.go-top:hover {
+
+}
