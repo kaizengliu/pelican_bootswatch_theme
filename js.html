@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>    javascript挑战题
+</title>
     <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="http://kaizengliu.github.io/pelican_bootswatch_theme/theme/css/pygments.css">
@@ -66,45 +67,42 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-xs-6">
                 <h1>
-    文章列表
+    javascript挑战题
                 </h1>
             </div>
 
             <div class="col-lg-2 col-md-2 col-xs-6 text-right">
+    <h3><small> 2015/07/26 </small></h3>
             </div>
         </div>
     </div>
     <div class="main-content">
-    <ul class="article-list">
-        <li class="article-item">
-            <h3 class="text-info">
-                <a href="js.html">
-                javascript挑战题
-                <small class="text-muted" style="margin-left: 20px"> 2015/07/26 </small>
-                </a>
-            </h3>
+    <div class="highlight"><pre><span class="c1">//   挑战目标：</span>
+<span class="c1">//   获取闭包内的 handler 变量，提交给 check，弹出 win 成功</span>
+<span class="c1">//   不能有交互</span>
+<span class="c1">//   兼容主流浏览器</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">==</span> <span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
 
-            <div class="article-summary">
-                获取闭包变量 ...<a href="js.html"><i class="fa fa-book"></i>查看</a>
-            </div>
-        </li>
-        <li class="article-item">
-            <h3 class="text-info">
-                <a href="page_out.html">
-                pages 1
-                <small class="text-muted" style="margin-left: 20px"> 2015/05/20 </small>
-                </a>
-            </h3>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
 
-            <div class="article-summary">
-                page out ...<a href="page_out.html"><i class="fa fa-book"></i>查看</a>
-            </div>
-        </li>
-    </ul>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">==</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">})();</span>
+</pre></div>
 
-        关于我
-        <p>Pelican</p>
-        pages/about_me.html
+
+<div class="highlight"><pre>// 这里写挑战代码：
+listener = getEventListeners(document).click[0].listener
+window.check(listener)
+</pre></div>
     </div>
 </div>
 <a href="javascript:void(0);" class="go-top">Go Top</a>
