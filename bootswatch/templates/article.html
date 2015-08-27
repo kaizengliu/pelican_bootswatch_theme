@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block article_title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block article_sub_info %}
+    <h3><small> {{ article.date|strftime('%Y/%m/%d') }} </small></h3>
+{% endblock %}
+
+{% block content %}
+    {{ article.content }}
+{% endblock %}

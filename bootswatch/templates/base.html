@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/main.css">
+
+    <script src="{{ SITEURL }}/theme/js/jquery.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/less.min.js"></script>
+</head>
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{{ SITEURL }}" class="navbar-brand">{{ SITENAME }}</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="notes">笔记 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="notes">
+                        {% for article in articles %}
+                            <li>
+                                <a href="{{ SITEURL}}/{{ article.url }}">
+                                    {{ article.title }}
+                                    <span class="text-muted">{{ article.date|strftime('%Y/%m/%d') }}</span>
+                                </a>
+                            </li>
+
+                            {% if not loop.last %}
+                                <li class="divider"></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{{ SITEURL }}/pages/{{ ABOUT_ME_URL }}">关于我</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ GITHUB_URL }}" target="_blank"><i class="fa fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-xs-6">
+                <h1>
+                    {% block article_title %}
+                    {% endblock %}
+                </h1>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-xs-6 text-right">
+                {% block article_sub_info %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+<a href="javascript:void(0);" class="go-top">Go Top</a>
+
+<script type="text/javascript">
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        });
+    </script>
+</body>
+</html>

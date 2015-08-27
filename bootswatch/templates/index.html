@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block article_title %}
+    笔记列表
+{% endblock %}
+
+{% block content %}
+    <ul class="article-list">
+    {% for article in articles %}
+        <li class="article-item">
+            <h3 class="text-info">
+                <a href="{{ article.url }}">
+                {{ article.title }}
+                <small class="text-muted" style="margin-left: 20px"> {{ article.date|strftime('%Y/%m/%d') }} </small>
+                </a>
+            </h3>
+
+            <div class="article-summary">
+                {{ article.summary|striptags }} ...<a href="{{ article.url }}"><i class="fa fa-book"></i>查看</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% for page in pages %}
+        {{ page.title }}
+        {{ page.summary }}
+        {{ page.url }}
+    {% endfor %}
+{% endblock %}
