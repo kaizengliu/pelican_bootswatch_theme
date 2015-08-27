@@ -1,5 +1,7 @@
 # pelican_bootswatch_theme
 
-## 安装::
+## 安装
+```
+  python pelican_theme_install -t bootswatch
 
-   python pelican_theme_install -t bootswatch
+```
