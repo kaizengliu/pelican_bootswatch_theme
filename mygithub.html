@@ -95,10 +95,14 @@
     <div class="main-content">
     <h2>微信开发包</h2>
 <ol>
-<li>在 wechat-python-sdk 项目基础上构建的</li>
+<li>在<a href="https://github.com/doraemonext/wechat-python-sdk">wechat-python-sdk</a>项目基础上构建的</li>
 <li>wechat-python-sdk项目文档: http://wechat-python-sdk.readthedocs.org/</li>
-<li>添加或修改的功能如下:</li>
-<li>更改grant_token存储方式, 以memcache代替原来的变量存储方式. 并建议以单利模式方式使用微信类(微信类所需的如appid等众多参数没有必要因为微信类实例的重复新建再写一次)。原来WechatBasic将grant_token以私有变量存储，使用单例模式时，在服务重启时会使grant_token失效。当有多个服务同 时运行时，每个服务的grant_token会不一致，导致grant_token的频繁更新。</li>
+<li>
+<p>添加或修改的功能如下:</p>
+</li>
+<li>
+<p>更改grant_token存储方式, 以memcache代替原来的变量存储方式. 并建议以单利模式方式使用微信类(微信类所需的如appid等众多参数没有必要因为微信类实例的重复新建再写一次)。原来WechatBasic将grant_token以私有变量存储，使用单例模式时，在服务重启时会使grant_token失效。当有多个服务同 时运行时，每个服务的grant_token会不一致，导致grant_token的频繁更新。</p>
+</li>
 <li>网页授权获取用户基本信息的snsapi_base方式</li>
 <li>微信支付(扫描，jsapi)</li>
 </ol>
